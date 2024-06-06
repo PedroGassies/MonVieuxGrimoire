@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-
+require('dotenv').config();
 module.exports = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decodedToken.userId;
         req.auth = {
             userId: userId
@@ -14,8 +14,6 @@ module.exports = (req, res, next) => {
     }
 };
 
-//dotenv pour masquer le token
-//helmet pour proteger les headers
-//express-rate-limit bibliotheque pour eviter de forcebrut un mdp ou ddos
 
-//supprimer .git faire git init dans nouveau repo
+
+
