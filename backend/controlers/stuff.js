@@ -2,7 +2,7 @@ const Book = require('../models/Book');
 const fs = require('fs'); //file system, give acces to functionnality wich allows to midify files in our system 
 const path = require('path');
 
-
+//Rajouter commentaires 
 exports.addBook = (req, res, next) => {
     const bookObject = JSON.parse(req.body.book);
     delete bookObject._id;
@@ -62,7 +62,7 @@ exports.deleteBook = (req, res, next) => {
             } else {
                 const filename = book.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
-                    Book.deleteOne({ _id: req.params.id })
+                    Book.deleteOne({ _id: req.params.id }) //enlever l'image du folder images
                         .then(() => { res.status(200).json({ message: 'Livre supprimé !' }) })
                         .catch(error => res.status(403).json({ message: ': unauthorized request' }));
                 });

@@ -13,3 +13,9 @@ module.exports = (req, res, next) => {
         res.status(403).json({ error });
     }
 };
+
+//dotenv pour masquer le token
+//helmet pour proteger les headers
+//express-rate-limit bibliotheque pour eviter de forcebrut un mdp ou ddos
+
+//supprimer .git faire git init dans nouveau repo
