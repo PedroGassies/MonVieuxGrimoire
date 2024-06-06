@@ -2,7 +2,7 @@ const Book = require('../models/Book');
 const fs = require('fs'); //file system, give acces to functionnality wich allows to midify files in our system 
 const path = require('path');
 
-//Rajouter commentaires 
+//adding a book, and the image is added to the folder images
 exports.addBook = (req, res, next) => {
     const bookObject = JSON.parse(req.body.book);
     delete bookObject._id;
@@ -18,19 +18,21 @@ exports.addBook = (req, res, next) => {
         .catch(error => { res.status(400).json({ error }) })
 };
 
-
+//Delivers informations for all books
 exports.getAllStuff = (req, res, next) => {
     Book.find()
         .then(books => res.status(200).json(books))
         .catch(error => res.status(400).json({ error }));
 };
 
+//Get information from a book
 exports.getOneBook = (req, res, next) => {
     Book.findOne({ _id: req.params.id })
         .then(book => res.status(200).json(book))
         .catch(error => res.status(403).json({ message: "" }))
 }
 
+//modify information concerning the book, delete previous image in the folder images if a new one is added
 exports.modifyBook = (req, res, next) => {
     const bookObject = req.file ? {
         ...JSON.parse(req.body.book),
@@ -57,7 +59,7 @@ exports.modifyBook = (req, res, next) => {
         });
 };
 
-
+//delete book, and image from folder images
 exports.deleteBook = (req, res, next) => {
     Book.findOne({ _id: req.params.id })
         .then(book => {
