@@ -2,12 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
-const stuffRoutes = require('./routes/stuff')
-const userRoutes = require('./routes/user')
+const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit');
+require('dotenv').config();
 
-mongoose.connect('mongodb+srv://Pedro:natsudragnir@cluster0.fsbzrtv.mongodb.net/',)
+
+mongoose.connect(process.env.DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'))
 const app = express();
