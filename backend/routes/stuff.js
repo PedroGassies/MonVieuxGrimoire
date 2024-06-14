@@ -4,7 +4,7 @@ const router = express.Router();
 const multer = require('../middleware/multer-config');
 const sharp = require('../middleware/sharp');
 
-const stuffCtrl = require('../controlers/stuff'); // Assurez-vous que ce chemin est correct
+const stuffCtrl = require('../controlers/stuff');
 
 
 

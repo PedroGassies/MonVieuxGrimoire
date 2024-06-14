@@ -94,7 +94,7 @@ exports.rateBook = (req, res, next) => {
                 return res.status(400).json({ message: 'Vous avez déjà noté ce livre.' })
             }
             book.ratings.push({ userId, grade: rating })
-
+            //
             const totalRatings = book.ratings.length;
             const sumRatings = book.ratings.reduce((sum, rating) => sum + rating.grade, 0);
             const averageRating = sumRatings / totalRatings;

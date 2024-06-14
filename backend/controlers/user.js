@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt'); //Hash password
+const jwt = require('jsonwebtoken');//create token
 const User = require('../models/User');
 require('dotenv').config();
 

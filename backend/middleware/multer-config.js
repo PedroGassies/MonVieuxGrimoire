@@ -1,4 +1,4 @@
-const multer = require('multer');
+const multer = require('multer');//gestion de fichiers dans les requetes
 
 
 const MIME_TYPES = {

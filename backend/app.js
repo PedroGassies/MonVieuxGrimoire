@@ -1,18 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const cors = require('cors');
+const mongoose = require('mongoose'); //interaction with bdd
 const path = require('path');
 const stuffRoutes = require('./routes/stuff');
 const userRoutes = require('./routes/user');
-const helmet = require('helmet');
+//const helmet = require('helmet');//protege en-tetes http
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 
-mongoose.connect(process.env.DB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect(process.env.DB_URL)
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch(() => console.log('Connexion à MongoDB échouée !'))
 const app = express();
@@ -38,10 +36,10 @@ app.use((req, res, next) => {
 
 
 
-
+app.use(cors());
 app.use(bodyParser.json())
 app.use(limiter);
-app.use(helmet());
+//app.use(helmet());
 app.use('/api/books', stuffRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/images', express.static(path.join(__dirname, 'images')));
